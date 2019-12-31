@@ -1,24 +1,25 @@
 Package: daybreak
 Type: Package
-Title: daybreak title goes here otherwise CRAN checks fail
+Title: Compute Sun Rise/Set Times, Start/End of Twilight, and the 
+    Length of the Day at Any Date and Latitude
 Version: 0.1.0
 Date: 2019-12-31
 Authors@R: c(
     person("Bob", "Rudis", email = "bob@rud.is", role = c("aut", "cre"), 
-           comment = c(ORCID = "0000-0001-5670-2640"))
+           comment = c(ORCID = "0000-0001-5670-2640")),
+    person("Paul", "Schlyter", role = "aut", comment = "sunriset lib")
   )
 Maintainer: Bob Rudis <bob@rud.is>
-Description: A good description goes here otherwise CRAN checks fail.
+Description: A wrapper for Paul Schlyter's C-based library for computing 
+    sunrise, sunset, twilight start and end, plus the length of day for 
+    a given data and coordinates.
 URL: https://gitlab.com/hrbrmstr/daybreak
 BugReports: https://gitlab.com/hrbrmstr/daybreak/issues
 Encoding: UTF-8
-License: AGPL
-Suggests:
-    covr
-Depends:
+NeedsCompilation: yes
+License: MIT + file LICENSE
+Depends: 
     R (>= 3.2.0)
-Imports:
-    httr,
-    jsonlite
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.0.2
+Suggests: tinytest

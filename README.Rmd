@@ -39,6 +39,45 @@ packageVersion("daybreak")
 
 ```
 
+Near me:
+
+```{r ex1}
+day_length("2019-12-31", -70.8636, 43.2683)
+day_civil_twilight_length("2019-12-31", -70.8636, 43.2683)
+day_nautical_twilight_length("2019-12-31", -70.8636, 43.2683)
+day_astronomical_twilight_length("2019-12-31", -70.8636, 43.2683)
+sun_rise_set("2019-12-31", -70.8636, 43.2683)
+civil_twilight("2019-12-31", -70.8636, 43.2683)
+nautical_twilight("2019-12-31", -70.8636, 43.2683)
+astronomical_twilight("2019-12-31", -70.8636, 43.2683)
+```
+
+Tromsø, Norway (Winter)
+
+```{r ex2}
+day_length("2019-12-31", 18.9553, 69.6492)
+day_civil_twilight_length("2019-12-31", 18.9553, 69.6492)
+day_nautical_twilight_length("2019-12-31", 18.9553, 69.6492)
+day_astronomical_twilight_length("2019-12-31", 18.9553, 69.6492)
+sun_rise_set("2019-12-31", 18.9553, 69.6492)
+civil_twilight("2019-12-31", 18.9553, 69.6492)
+nautical_twilight("2019-12-31", 18.9553, 69.6492)
+astronomical_twilight("2019-12-31", 18.9553, 69.6492)
+```
+
+Tromsø, Norway (Summer)
+
+```{r ex3}
+day_length("2019-06-01", 18.9553, 69.6492)
+day_civil_twilight_length("2019-06-01", 18.9553, 69.6492)
+day_nautical_twilight_length("2019-06-01", 18.9553, 69.6492)
+day_astronomical_twilight_length("2019-06-01", 18.9553, 69.6492)
+sun_rise_set("2019-06-01", 18.9553, 69.6492)
+civil_twilight("2019-06-01", 18.9553, 69.6492)
+nautical_twilight("2019-06-01", 18.9553, 69.6492)
+astronomical_twilight("2019-06-01", 18.9553, 69.6492)
+```
+
 ## daybreak Metrics
 
 ```{r cloc, echo=FALSE}
