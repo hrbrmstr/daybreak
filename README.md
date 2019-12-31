@@ -39,6 +39,8 @@ The following functions are implemented:
 ## Installation
 
 ``` r
+install.packages("daybreak", repos = "https://cinc.rud.is")
+# or
 remotes::install_git("https://git.rud.is/hrbrmstr/daybreak.git")
 # or
 remotes::install_git("https://git.sr.ht/~hrbrmstr/daybreak")
@@ -46,6 +48,8 @@ remotes::install_git("https://git.sr.ht/~hrbrmstr/daybreak")
 remotes::install_gitlab("hrbrmstr/daybreak")
 # or
 remotes::install_bitbucket("hrbrmstr/daybreak")
+# or
+remotes::install_github("hrbrmstr/daybreak")
 ```
 
 NOTE: To use the ‘remotes’ install options you will need to have the
