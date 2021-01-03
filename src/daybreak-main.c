@@ -3,7 +3,6 @@
 
 #include "sunriset.h"
 #include "daybreak.h"
-
 SEXP r_day_length(SEXP year, SEXP month, SEXP day, SEXP lon, SEXP lat) {
 
   return(ScalarReal(day_length(
