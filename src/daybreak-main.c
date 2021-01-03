@@ -2,49 +2,56 @@
 #include <Rinternals.h>
 
 #include "sunriset.h"
+#include "daybreak.h"
 
 SEXP r_day_length(SEXP year, SEXP month, SEXP day, SEXP lon, SEXP lat) {
 
-  SEXP out = PROTECT(allocVector(REALSXP, 1));
-  REAL(out)[0] = day_length(
+  return(ScalarReal(day_length(
     asInteger(year), asInteger(month), asInteger(day), asReal(lon), asReal(lat)
-  );
-  UNPROTECT(1);
-
-  return(out);
+  )));
 
 }
 
 SEXP r_day_civil_twilight_length(SEXP year, SEXP month, SEXP day, SEXP lon, SEXP lat) {
 
-  SEXP out = PROTECT(allocVector(REALSXP, 1));
-  REAL(out)[0] = day_civil_twilight_length(
+  return(ScalarReal(day_civil_twilight_length(
     asInteger(year), asInteger(month), asInteger(day), asReal(lon), asReal(lat)
-  );
-  UNPROTECT(1);
-
-  return(out);
+  )));
 
 }
 
 SEXP r_day_nautical_twilight_length(SEXP year, SEXP month, SEXP day, SEXP lon, SEXP lat) {
 
-  SEXP out = PROTECT(allocVector(REALSXP, 1));
-  REAL(out)[0] = day_nautical_twilight_length(
+  return(ScalarReal(day_nautical_twilight_length(
     asInteger(year), asInteger(month), asInteger(day), asReal(lon), asReal(lat)
-  );
-  UNPROTECT(1);
-
-  return(out);
+  )));
 
 }
 
 SEXP r_day_astronomical_twilight_length(SEXP year, SEXP month, SEXP day, SEXP lon, SEXP lat) {
 
-  SEXP out = PROTECT(allocVector(REALSXP, 1));
-  REAL(out)[0] = day_astronomical_twilight_length(
+  return(ScalarReal(day_astronomical_twilight_length(
     asInteger(year), asInteger(month), asInteger(day), asReal(lon), asReal(lat)
-  );
+  )));
+
+}
+
+// makes and returns two named real SEXPs
+
+SEXP two_named_doubles(int res, double var1, double var2, char *name1, char *name2) {
+
+  const char *names[] = { name1, name2, "" };
+
+  SEXP out = PROTECT(mkNamed(VECSXP, names));
+
+  if (res == 0) {
+    SET_VECTOR_ELT(out, 0, ScalarReal(var1));
+    SET_VECTOR_ELT(out, 1, ScalarReal(var2));
+  } else {
+    SET_VECTOR_ELT(out, 0, ScalarReal(NA_REAL));
+    SET_VECTOR_ELT(out, 1, ScalarReal(NA_REAL));
+  }
+
   UNPROTECT(1);
 
   return(out);
@@ -60,25 +67,7 @@ SEXP r_sun_rise_set(SEXP year, SEXP month, SEXP day, SEXP lon, SEXP lat) {
     &rise, &set
   );
 
-  const char *names[] = {
-    "rise",
-    "set",
-    ""
-  };
-
-  SEXP out = PROTECT(mkNamed(VECSXP, names));
-
-  if (res == 0) {
-    SET_VECTOR_ELT(out, 0, PROTECT(ScalarReal(rise)));
-    SET_VECTOR_ELT(out, 1, PROTECT(ScalarReal(set)));
-  } else {
-    SET_VECTOR_ELT(out, 0, PROTECT(ScalarReal(NA_REAL)));
-    SET_VECTOR_ELT(out, 1, PROTECT(ScalarReal(NA_REAL)));
-  }
-
-  UNPROTECT(3);
-
-  return(out);
+  return(two_named_doubles(res, rise, set, "rise", "set"));
 
 }
 
@@ -91,25 +80,7 @@ SEXP r_civil_twilight(SEXP year, SEXP month, SEXP day, SEXP lon, SEXP lat) {
     &start, &end
   );
 
-  const char *names[] = {
-    "start",
-    "end",
-    ""
-  };
-
-  SEXP out = PROTECT(mkNamed(VECSXP, names));
-
-  if (res == 0) {
-    SET_VECTOR_ELT(out, 0, PROTECT(ScalarReal(start)));
-    SET_VECTOR_ELT(out, 1, PROTECT(ScalarReal(end)));
-  } else {
-    SET_VECTOR_ELT(out, 0, PROTECT(ScalarReal(NA_REAL)));
-    SET_VECTOR_ELT(out, 1, PROTECT(ScalarReal(NA_REAL)));
-  }
-
-  UNPROTECT(3);
-
-  return(out);
+  return(two_named_doubles(res, start, end, "start", "end"));
 
 }
 
@@ -122,25 +93,7 @@ SEXP r_nautical_twilight(SEXP year, SEXP month, SEXP day, SEXP lon, SEXP lat) {
     &start, &end
   );
 
-  const char *names[] = {
-    "start",
-    "end",
-    ""
-  };
-
-  SEXP out = PROTECT(mkNamed(VECSXP, names));
-
-  if (res == 0) {
-    SET_VECTOR_ELT(out, 0, PROTECT(ScalarReal(start)));
-    SET_VECTOR_ELT(out, 1, PROTECT(ScalarReal(end)));
-  } else {
-    SET_VECTOR_ELT(out, 0, PROTECT(ScalarReal(NA_REAL)));
-    SET_VECTOR_ELT(out, 1, PROTECT(ScalarReal(NA_REAL)));
-  }
-
-  UNPROTECT(3);
-
-  return(out);
+  return(two_named_doubles(res, start, end, "start", "end"));
 
 }
 
@@ -153,24 +106,6 @@ SEXP r_astronomical_twilight(SEXP year, SEXP month, SEXP day, SEXP lon, SEXP lat
     &start, &end
   );
 
-  const char *names[] = {
-    "start",
-    "end",
-    ""
-  };
-
-  SEXP out = PROTECT(mkNamed(VECSXP, names));
-
-  if (res == 0) {
-    SET_VECTOR_ELT(out, 0, PROTECT(ScalarReal(start)));
-    SET_VECTOR_ELT(out, 1, PROTECT(ScalarReal(end)));
-  } else {
-    SET_VECTOR_ELT(out, 0, PROTECT(ScalarReal(NA_REAL)));
-    SET_VECTOR_ELT(out, 1, PROTECT(ScalarReal(NA_REAL)));
-  }
-
-  UNPROTECT(3);
-
-  return(out);
+  return(two_named_doubles(res, start, end, "start", "end"));
 
 }
